@@ -1,0 +1,47 @@
+{% extends 'Site/base.html' %}
+
+{% block content %}
+
+<h2>Urban Search</h2>
+{% if user.is_authenticated %}
+<form class="d-flex">
+        <input class="form-control me-2" placeholder="Search" aria-label="Search" type="text" name="urbansearch" id="urbansearch" value="{{ request.GET.get.urbansearch }}">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+
+<div>
+{% for top in data.top_meaning %}
+          <div class="row justify-content-center mt-5">
+               <div class="col-md-6 col-sm-14 border-bottom position-relative">
+                    
+                    <h4>Top Meaning: {{top}}</h4>
+               </div>
+          </div>
+{%endfor%}
+</div>
+
+<div>
+          {% for meaning in data.meaning %}
+          <div class="row justify-content-center mt-5">
+               <div class="col-md-6 col-sm-14 border-bottom position-relative">
+                    
+                    <h4>Meaning: {{meaning}}</h4>
+               </div>
+          </div>
+          {%endfor%}
+          
+</div>
+{%if data.link%}
+<div class="row justify-content-center mt-5">
+<div class="col-md-6 col-sm-14 border-bottom position-relative">
+<a href={{data.link}}><h4>Link to the original source </h4></a>
+</div>
+</div>
+{%endif%}
+
+{% else %}
+<div class="row justify-content-center mt-5">
+<p class="col-md-auto col-sm-auto"><big>Login to use this Feature</big> &nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-outline-success me-2" href="/login/auth0">SignIn</a></p>
+</div>
+{%endif%}
+{% endblock content %}

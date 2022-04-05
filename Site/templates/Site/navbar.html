@@ -1,0 +1,74 @@
+{% load custom_tags %}
+<div>
+     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 ">
+     <div class="container-fluid">
+     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+     </button>
+     <a class="navbar-brand" href="{% url 'post-list'%}">NullBox</a>
+     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav me-auto mb-0 mb-lg-2">
+          
+          </ul>
+          
+          <form class="d-flex me-4" method="GET" action="{% url 'profile-search' %}">
+          <div class="input-group">
+               <span class="input-group-text" id="basic-addon1">@</span>
+               <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="query" value="{{ request.GET.query }}">
+               <!--<button class="remove-default-btn" type="submit"></button>-->
+          </div>
+        </form>
+        
+        
+          
+        
+      </form>
+          {% if user.is_authenticated %}
+               <div class='nav-li d-flex me-5'>
+               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" role="buton" aria-expanded="false">
+                    <img class="round-circle post-img" height="30" width="30" src="{{ request.user.profile.picture.url }}" />
+                    </a>
+                    <ul class="dropdown-menu">
+                         <li><a class="dropdown-item" href="{% url 'profile' request.user.profile.pk %}">Profile</a></li>
+                         <li><a class="dropdown-item" href="/logout/">Sign Out</a></li>
+                    </ul>
+                    </div>
+               
+               <div class='nav-li d-flex me-4'>
+               <ul class="navbar-nav ">
+                    <div class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" role="buton" aria-expanded="false">
+                         <i class="fas fa-tools"></i>
+                         </a>
+                         <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{% url 'stack'%}">Stackoverflow</a></li>
+                              <li><a class="dropdown-item" href="{% url 'urban'%}">Urban</a></li>
+                              <li><a class="dropdown-item" href="{% url 'wiki'%}">Wiki</a></li>
+                              <li><a class="dropdown-item" href="{% url 'explore'%}">Explore</a></li>
+                              
+               </ul>
+               </div>
+		<div class="nav-item me-3">
+
+                    {% show_notifications %}
+          </div>
+               
+                    
+                    
+                   
+          {% else %}
+                  <a class="btn btn-outline-success me-2" href="/login/auth0">SignIn</a>
+          {% endif %} 
+          
+          
+     </div>
+     
+     </div>
+     
+     
+
+     </div>
+     </nav>
+</div>

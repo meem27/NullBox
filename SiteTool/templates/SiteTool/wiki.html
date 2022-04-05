@@ -1,0 +1,33 @@
+{% extends 'Site/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h2>Wikipedia Search</h2>
+<form class="d-flex">
+        <input class="form-control me-2" placeholder="Search" aria-label="Search" type="text" name="wiki" id="wiki" value="{{ request.GET.get.wiki }}">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+
+
+{% if data%}
+     
+          
+          
+          
+          <div class="row justify-content-center mt-5">
+               <div class="col-md-6 col-sm-14 border-bottom position-relative">
+                    <p>{{data}}</p>
+               </div>
+          </div>
+          
+          
+          
+    
+{%endif%}
+
+{% else %}
+<div class="row justify-content-center mt-5">
+<p class="col-md-auto col-sm-auto"><big>Login to use this Feature</big> &nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-outline-success me-2" href="/login/auth0">SignIn</a></p>
+</div>
+{%endif%}
+{% endblock content %}
